@@ -2,3 +2,17 @@
 %p <a href="http://go-get-me-so.me/chicken">http://go-get-me-so.me/chicken</a>
 %p <a href="http://go-get-me-so.me/responsible-adults">http://go-get-me-so.me/responsible-adults</a>
 %p <a href="http://go-get-me-so.me/chuck-norris-pants">http://go-get-me-so.me/chuck-norris-pants</a>
+
+%h1 Go Get Me Some Recent!
+- @recent_topics.each do |topic|
+  %p
+    %a{ :href => topic.topic }<
+      = topic.topic.capitalize.gsub(/\-+/, ' ')
+    \-
+    = topic.timestamp.strftime("%I:%M %p")
+        
+%h1 Go Get Me Some Top 10!
+- @top_10.each do |topic|
+  %p
+    %a{ :href => topic.topic }<
+      = topic.topic.capitalize.gsub(/\-+/, ' ')   
