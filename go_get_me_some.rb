@@ -1,3 +1,4 @@
+$:.unshift *Dir[File.dirname(__FILE__) + '/vendor/*/lib']
 require 'rubygems'
 require 'sinatra'
 require 'haml'
