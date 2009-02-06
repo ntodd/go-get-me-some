@@ -3,6 +3,7 @@
   = params[:topic].upcase.gsub(/\-+/, ' ') + "!"
 
 - unless @remote_image_src.nil? then
-  %img{ :src => @remote_image_src, :style => 'max-height: 400px;'}
+  - @remote_image = @remote_image_src.gsub(/\%25/, '%')
+  %img{ :src => @remote_image, :style => 'max-height: 400px;'}
 - else
   %p You fail at the internet
