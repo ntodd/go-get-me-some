@@ -10,7 +10,12 @@
       = topic.topic.capitalize.gsub(/\-+/, ' ')
     \-
     = topic.timestamp.strftime("%I:%M %p")
-        
+
+%br
+%p 
+  Powered by
+  %a{ :href => 'http://www.sinatrarb.com/'} Sinatra
+  
 / %h1 Go Get Me Some Top 10!
 / - @top_10.each do |topic|
 /   %p
