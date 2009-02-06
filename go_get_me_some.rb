@@ -19,7 +19,7 @@ get '/:topic' do
   @google_image = (doc/"table/tr/td/a/img").first  
 
   # fetch hotlinking image source
-  anchor = (doc/"div#ImgCont/p/table/tr/td/a").first
+  anchor = (doc/'table[@align="center"]/tr/td/a[@href^="/imgres"]').first
   @remote_image_src = anchor.to_s.match(/imgurl=(http:\/\/[^&]+)/)[1] unless anchor.nil?
 
   haml :view
