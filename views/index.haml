@@ -11,8 +11,8 @@
     \-
     = topic.timestamp.strftime("%I:%M %p")
         
-%h1 Go Get Me Some Top 10!
-- @top_10.each do |topic|
-  %p
-    %a{ :href => topic.topic }<
-      = topic.topic.capitalize.gsub(/\-+/, ' ')   
+/ %h1 Go Get Me Some Top 10!
+/ - @top_10.each do |topic|
+/   %p
+/     %a{ :href => topic.topic }<
+/       = topic.topic.capitalize.gsub(/\-+/, ' ')   
