@@ -10,7 +10,10 @@ get '/' do
 end
 
 get '/:topic' do
-  doc = open("http://images.google.com/images?um=1&hl=en&client=safari&rls=en-us&btnG=Search+Images&ei=ubeLSbSgGqTUMbzxzZAL&gbv=1&ei=lLqLSYWsFaX6NJrzyIkL&q=#{CGI.escape(params[:topic])}") { |f| Hpricot(f) }
+  
+  # can't use CGI.escape() on deployment server, so using a gsub to catch spaces in the url
+  topic = params[:topic].gsub(/\s+/, '%20')
+  doc = open("http://images.google.com/images?um=1&hl=en&client=safari&rls=en-us&btnG=Search+Images&ei=ubeLSbSgGqTUMbzxzZAL&gbv=1&ei=lLqLSYWsFaX6NJrzyIkL&q=#{topic}") { |f| Hpricot(f) }
 
   #grab full google img element for backup display if hotlinking fails
   @google_image = (doc/"table/tr/td/a/img").first  
