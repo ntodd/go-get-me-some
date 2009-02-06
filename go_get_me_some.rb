@@ -1,3 +1,9 @@
+# GET ME SOME SOURCE CODE!
+# 
+# Code by Nate Todd and Jonathan Crossman
+# Built because... YES WE CAN!
+# 2/6/09 is a day not unlike any other day
+
 $:.unshift *Dir[File.dirname(__FILE__) + '/vendor/*/lib']
 require 'rubygems'
 require 'sinatra'
