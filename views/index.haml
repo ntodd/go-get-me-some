@@ -9,7 +9,7 @@
     %a{ :href => topic.topic }<
       = topic.topic.capitalize.gsub(/\-+/, ' ')
     \-
-    = topic.timestamp.strftime("%I:%M %p")
+    = to_pretty(topic.timestamp)
 
 %br
 %p 
