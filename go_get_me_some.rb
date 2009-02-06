@@ -44,7 +44,7 @@ end
 
 get '/' do
   @recent_topics = Topic.recent(10)
-  @top_10 = Topic.top(10)
+  # @top_10 = Topic.top(10)
   haml :index
 end
 
