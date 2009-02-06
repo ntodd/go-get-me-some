@@ -1,5 +1,5 @@
 %h1
   GO GET ME SOME
-  = params[:topic].upcase + "!"
+  = params[:topic].upcase.gsub(/\-+/, ' ') + "!"
 
-= @image
+= @image.nil? ? "Ouch, you lose at the internet." : @image
