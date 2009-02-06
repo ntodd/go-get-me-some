@@ -2,4 +2,7 @@
   GO GET ME SOME
   = params[:topic].upcase.gsub(/\-+/, ' ') + "!"
 
-= @image.nil? ? "Ouch, you lose at the internet." : @image
+- unless @remote_image_src.nil? then
+  %img{ :src => @remote_image_src, :style => 'max-height: 400px;'}
+- else
+  %p Hello
