@@ -3,5 +3,5 @@
   %a{ :href => '/' } Go Home
 - @topics.each do |topic|
   %a{ :href => topic.topic }<
-    = topic.topic.capitalize.gsub(/\-+/, ' ')
+    = topic.topic.capitalize.gsub(/\-+|\%20+/, ' ')
   \/
