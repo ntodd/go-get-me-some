@@ -48,6 +48,11 @@ get '/' do
   haml :index
 end
 
+get '/list_topics' do
+  @topics = Topic.find(:all, :group => 'topic', :order => 'lower(topic) ASC')
+  haml :topics
+end
+
 get '/:topic' do
   
   # can't use CGI.escape() on deployment server, so using a gsub to catch spaces in the url
@@ -65,3 +70,4 @@ get '/:topic' do
   
   haml :view
 end
+
