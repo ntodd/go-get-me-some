@@ -7,7 +7,7 @@
 - @recent_topics.each do |topic|
   %p
     %a{ :href => topic.topic }<
-      = topic.topic.capitalize.gsub(/\-+/, ' ')
+      = topic.topic.capitalize.gsub(/\-+|\%20+/, ' ')
     \-
     = to_pretty(topic.timestamp)
 %br
