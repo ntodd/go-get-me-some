@@ -61,7 +61,7 @@ get '/:topic' do
   anchor = (doc/'table[@align="center"]/tr/td/a[@href^="/imgres"]').first
   @remote_image_src = anchor.to_s.match(/imgurl=(http:\/\/[^&]+(?:jpe?g|gif|png))/)[1] unless anchor.nil?
       
-  Topic.new( :topic => params[:topic], :timestamp => Time.now ).save unless anchor.nil?
+  Topic.new( :topic => topic, :timestamp => Time.now ).save unless anchor.nil?
   
   haml :view
 end
