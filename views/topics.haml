@@ -1,0 +1,4 @@
+- @topics.each do |topic|
+  %a{ :href => topic.topic }<
+    = topic.topic.capitalize.gsub(/\-+/, ' ')
+  \/
