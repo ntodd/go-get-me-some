@@ -60,13 +60,18 @@ get '/:topic' do
   doc = open("http://images.google.com/images?um=1&hl=en&client=safari&rls=en-us&btnG=Search+Images&ei=ubeLSbSgGqTUMbzxzZAL&gbv=1&ei=lLqLSYWsFaX6NJrzyIkL&q=#{topic}") { |f| Hpricot(f) }
 
   #grab full google img element for backup display if hotlinking fails
-  @google_image = (doc/"table/tr/td/a/img").first  
+  # @google_image = (doc/"table/tr/td/a/img").first
 
   # fetch hotlinking image source
   anchor = (doc/'table[@align="center"]/tr/td/a[@href^="/imgres"]').first
   @remote_image_src = anchor.to_s.match(/imgurl=(http:\/\/[^&]+(?:jpe?g|gif|png))/)[1] unless anchor.nil?
       
+  # Create the entry
   Topic.new( :topic => topic, :timestamp => Time.now ).save unless anchor.nil?
+  
+  # Find a random entry
+  random_id = 1 + rand(Topic.count - 1)
+  @random_topic = Topic.find(random_id)
   
   haml :view
 end
