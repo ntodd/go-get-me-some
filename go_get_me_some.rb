@@ -66,7 +66,8 @@ get '/:topic' do
 
   # fetch hotlinking image source
   anchor = (doc/'table[@align="center"]/tr/td/a[@href*="imgurl"]').first
-  @thumbnail = (anchor/'img').first['src']
+  @thumbnail = (anchor/'img').first['src'] unless anchor.nil?
+  
   @remote_image_src = anchor['href'].match(/imgurl=(http:\/\/[^&]+(?:jpe?g|gif|png)?)/)[1] unless anchor.nil?
       
   # Create the entry
