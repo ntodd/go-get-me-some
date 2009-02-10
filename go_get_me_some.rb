@@ -42,6 +42,8 @@ helpers do
   end
 end
 
+set :public, File.dirname(__FILE__) + '/public'
+
 get '/' do
   @recent_topics = Topic.recent(10)
   # @top_10 = Topic.top(10)
@@ -63,8 +65,9 @@ get '/:topic' do
   # @google_image = (doc/"table/tr/td/a/img").first
 
   # fetch hotlinking image source
-  anchor = (doc/'table[@align="center"]/tr/td/a[@href^="/imgres"]').first
-  @remote_image_src = anchor.to_s.match(/imgurl=(http:\/\/[^&]+(?:jpe?g|gif|png))/)[1] unless anchor.nil?
+  anchor = (doc/'table[@align="center"]/tr/td/a[@href*="imgurl"]').first
+  @thumbnail = (anchor/'img').first['src']
+  @remote_image_src = anchor['href'].match(/imgurl=(http:\/\/[^&]+(?:jpe?g|gif|png)?)/)[1] unless anchor.nil?
       
   # Create the entry
   Topic.new( :topic => topic, :timestamp => Time.now ).save unless anchor.nil?
@@ -75,4 +78,3 @@ get '/:topic' do
   
   haml :view
 end
-

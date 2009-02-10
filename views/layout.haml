@@ -2,6 +2,8 @@
 %html{ :xmlns => "http://www.w3.org/1999/xhtml", :lang => "en", 'xml:lang' => "en" }
   %head
     %title Go Get Me Some
+    %script="var thumbnail='#{@thumbnail}'"
+    %script{ :src => "go_get_me_some.js", :type =>"text/javascript"}
   %body{ :style => 'text-align: center; padding-top: 50px;'}
     = yield
     <script type="text/javascript">
