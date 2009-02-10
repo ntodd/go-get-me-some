@@ -56,16 +56,22 @@ get '/list_topics' do
 end
 
 get '/:topic' do
+  fetch_and_display(params[:topic], 1)
+end
+
+get '/:topic/:img_number' do
+  fetch_and_display(params[:topic], params[:img_number])
+end
+
+private
+def fetch_and_display(topic_url, img_number)
   
   # can't use CGI.escape() on deployment server, so using a gsub to catch spaces in the url
-  topic = params[:topic].gsub(/\s+/, '%20')
+  topic = topic_url.gsub(/\s+/, '%20')
   doc = open("http://images.google.com/images?um=1&hl=en&client=safari&rls=en-us&btnG=Search+Images&ei=ubeLSbSgGqTUMbzxzZAL&gbv=1&ei=lLqLSYWsFaX6NJrzyIkL&q=#{topic}") { |f| Hpricot(f) }
 
-  #grab full google img element for backup display if hotlinking fails
-  # @google_image = (doc/"table/tr/td/a/img").first
-
   # fetch hotlinking image source
-  anchor = (doc/'table[@align="center"]/tr/td/a[@href*="imgurl"]').first
+  anchor = (doc/'table[@align="center"]/tr/td/a[@href*="imgurl"]')[img_number.to_i - 1]
   @thumbnail = (anchor/'img').first['src'] unless anchor.nil?
   
   @remote_image_src = anchor['href'].match(/imgurl=(http:\/\/[^&]+(?:jpe?g|gif|png)?)/)[1] unless anchor.nil?
