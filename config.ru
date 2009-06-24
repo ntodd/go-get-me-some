@@ -9,8 +9,8 @@ Sinatra::Application.default_options.merge!(
 
 use Rack::Cache,
   :verbose     => true,
-  :metastore   => 'file:/var/cache/rack/meta',
-  :entitystore => 'file:/var/cache/rack/body'
+  :metastore   => 'file:/home/ntodd/public_html/go-get-me-some/tmp/cache/meta',
+  :entitystore => 'file:/home/ntodd/public_html/go-get-me-some/tmp/cache/body'
 
 require 'go_get_me_some'
 run Sinatra::Application
