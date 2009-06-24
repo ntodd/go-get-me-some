@@ -57,6 +57,7 @@ end
 
 get '/list_topics' do
   @topics = Topic.find(:all, :group => 'topic', :order => 'lower(topic) ASC')
+  response.headers['Cache-Control'] = 'max-age=1000'
   haml :topics
 end
 
