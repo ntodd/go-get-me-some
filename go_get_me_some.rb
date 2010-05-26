@@ -61,6 +61,10 @@ get '/list_topics' do
   haml :topics
 end
 
+get '/topic_count' do
+  "#{Topic.count}"
+end
+
 get '/:topic' do
   fetch_and_display(params[:topic], 1)
 end
