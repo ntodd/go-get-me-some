@@ -14,7 +14,7 @@ require 'activerecord'
 
 ActiveRecord::Base.establish_connection(
   :adapter => 'sqlite3',
-  :dbfile =>  'db/go_get_me_some.db'
+  :database =>  'db/go_get_me_some.db'
 )
 
 class Topic < ActiveRecord::Base
@@ -86,8 +86,7 @@ def fetch_and_display(topic_url, img_number)
   Topic.new( :topic => topic, :timestamp => Time.now ).save unless anchor.nil?
   
   # Find a random entry
-  random_id = 1 + rand(Topic.count - 1)
-  @random_topic = Topic.find(random_id)
+  @random_topic = Topic.first(:order => "random()", :select => "DISTINCT(topic)")
   
   haml :view
 end
