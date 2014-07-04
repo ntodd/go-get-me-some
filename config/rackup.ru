@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'sinatra'
- 
+
 set :environment, :production
 
 require app_file = File.dirname(__FILE__) + "/../go_get_me_some"

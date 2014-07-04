@@ -569,7 +569,7 @@ $LOAD_PATH.unshift dir unless $LOAD_PATH.include?(dir)
 #     </a>
 #   <![endif]-->
 #
-# ==== \ 
+# ==== \
 #
 # The backslash character escapes the first character of a line,
 # allowing use of otherwise interpreted characters as plain text.
@@ -921,7 +921,7 @@ $LOAD_PATH.unshift dir unless $LOAD_PATH.include?(dir)
 # ...or by setting the <tt>Merb::Plugin.config[:haml]</tt> hash in <tt>init.rb</tt> in Merb...
 #
 #   Merb::Plugin.config[:haml][:format] = :html5
-# 
+#
 # ...or by passing an options hash to Haml::Engine.new.
 # Available options are:
 #
